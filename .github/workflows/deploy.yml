@@ -1,0 +1,26 @@
+name: Local CI/CD
+
+on: [push, pull_request]
+
+jobs:
+  build-and-deploy:
+    runs-on: self-hosted  # Runs on YOUR machine
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+    
+    - name: Build Docker image
+      run: |
+        docker build -t my-app:latest .
+    
+    - name: Deploy locally
+      run: |
+        docker stop my-app || true
+        docker rm my-app || true
+        docker run -d -p 8080:80 --name my-app my-app:latest
+    
+    - name: Health check
+      run: |
+        sleep 5
+        curl -f http://localhost:8080 || echo "Health check failed"
