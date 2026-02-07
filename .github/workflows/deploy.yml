@@ -78,7 +78,7 @@ jobs:
         image-ref: ${{ secrets.DOCKER_USERNAME }}/my-app:latest
         format: table
         exit-code: 1
-        severity: CRITICAL,HIGH,MIDIUM
+        severity: CRITICAL,HIGH,MEDIUM
 
       #Push image only if scan passes  ##push only if Trivy passes
     - name: Push Docker image
