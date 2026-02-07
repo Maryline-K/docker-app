@@ -1,0 +1,6 @@
+failure-threshold: error
+ignored:
+  - DL3008   # Pin versions in apt-get (sometimes noisy)
+  - DL3018   # Pin versions in apk add
+trustedRegistries:
+  - docker.io
